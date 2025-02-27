@@ -3,14 +3,13 @@ require("dotenv").config();
 let formatThousands = require("format-thousands");
 const nobitex = require("./pricing/nobitex");
 const wallex = require("./pricing/wallex");
-const Atleast = process.env.Atleast
-const Maximum = process.env.Maximum
-
+const Atleast = process.env.Atleast;
+const Maximum = process.env.Maximum;
 
 async function calculate() {
   try {
     let amountRequested = 250;
-    let total = 50000000
+    let total = 50000000;
 
     const Percentages = {
       nobitex: process.env.Fee_nobitex,
@@ -26,7 +25,10 @@ async function calculate() {
     const wallex_buy_amount = wallexResult.wallex_buy.quantity;
     const wallex_buy_price = wallexResult.wallex_buy.price;
 
-    if (nobitex_sell_amount > 250 && wallex_buy_amount > 250) {
+    if (
+      nobitex_sell_amount > amountRequested &&
+      wallex_buy_amount > amountRequested
+    ) {
       // console.log(true)
       let nobitexPrice = amountRequested * nobitex_sell_price;
       let wallexPrice = amountRequested * wallex_buy_price;
@@ -44,18 +46,18 @@ async function calculate() {
 
       console.log(`nobitex price : ${formatThousands(nobitexPrice, ",")}`);
       console.log(`wallex price : ${formatThousands(wallexPrice, ",")}`);
-      console.log(`disagreement ${formatThousands(Disagreement , ",")}`);
+      console.log(`disagreement ${formatThousands(Disagreement, ",")}`);
       console.log(`nobitex fee : ${formatThousands(fee_nobitex, ",")}`);
       console.log(`wallex fee : ${formatThousands(fee_wallex, ",")}`);
       console.log(`all fee : ${formatThousands(allFee, ",")}`);
       console.log(`profit : ${formatThousands(Profit, ",")}`);
       console.log(`percentage : ${percentage}%`);
 
-      if(percentage > Atleast && percentage < Maximum){
-        // console.log("Beneficial")
+      if (percentage > Atleast && percentage < Maximum) {
+        console.log("Beneficial")
         //buy fom nobitex and sell to wallex
-      }else{
-        console.log("Not Beneficial")
+      } else {
+        console.log("Not Beneficial");
       }
     } else {
       console.log(false);
