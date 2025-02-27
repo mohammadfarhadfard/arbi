@@ -12,6 +12,8 @@ async function nobitex() {
     console.log(`nobitex buy price: ${formatThousands(nobitex_buy[0] / 10, ",")}, amount: ${nobitex_buy[1]}`);
     console.log(`nobitex sell price: ${formatThousands(nobitex_sell[0] / 10 , ",")}, amount: ${nobitex_sell[1]}`);
 
+        return { nobitex_sell };
+
   } catch (error) {
     console.log(error);
   }
