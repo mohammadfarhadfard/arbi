@@ -5,6 +5,29 @@ const nobitex = require("./pricing/nobitex");
 const wallex = require("./pricing/wallex");
 const Atleast = process.env.Atleast;
 const Maximum = process.env.Maximum;
+const { Pool } = require('pg');
+
+// Create a Postgres pool
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+});
+
+// Insert data into the profit_price table
+async function insertData(profit, status, percentage) {
+  try {
+    await pool.query(`
+      INSERT INTO profit_price (profit, status , percentage)
+      VALUES ($1, $2, $3)
+      RETURNING *;
+    `, [profit, status , percentage]);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 async function calculate() {
   try {
@@ -55,9 +78,12 @@ async function calculate() {
 
       if (percentage > Atleast && percentage < Maximum) {
         console.log("Beneficial")
+        // Insert data into the profit_price table
+        await insertData(Profit, 'Beneficial', percentage);
         //buy fom nobitex and sell to wallex
       } else {
         console.log("Not Beneficial");
+        // Insert data into the profit_price table
       }
     } else {
       console.log(false);

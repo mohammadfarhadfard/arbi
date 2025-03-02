@@ -15,6 +15,7 @@
     "calculate-percentages": "^1.0.0",
     "dotenv": "^16.4.7",
     "format-thousands": "^2.0.0",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "pg": "^8.13.3"
   }
 }
