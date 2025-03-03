@@ -31,8 +31,8 @@ async function insertData(profit, status, percentage) {
 
 async function calculate() {
   try {
-    let amountRequested = 250;
-    let total = 50000000;
+    let amountRequested = process.env.AmountRequested;
+    let total = process.env.Total;
 
     const Percentages = {
       nobitex: process.env.Fee_nobitex,
@@ -78,12 +78,12 @@ async function calculate() {
 
       if (percentage > Atleast && percentage < Maximum) {
         console.log("Beneficial")
+        console.log(`----------------------------------------------------`)
         // Insert data into the profit_price table
         await insertData(Profit, 'Beneficial', percentage);
-        //buy fom nobitex and sell to wallex
       } else {
         console.log("Not Beneficial");
-        // Insert data into the profit_price table
+        console.log(`----------------------------------------------------`)
       }
     } else {
       console.log(false);
@@ -93,4 +93,4 @@ async function calculate() {
   }
 }
 
-calculate();
+setInterval(calculate, 10000);
