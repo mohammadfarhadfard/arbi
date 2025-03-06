@@ -93,4 +93,5 @@ async function calculate() {
   }
 }
 
+setTimeout(calculate, 0); 
 setInterval(calculate, 10000);
