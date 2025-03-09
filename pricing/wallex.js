@@ -12,7 +12,7 @@ async function wallex() {
     console.log(`wallex buy price: ${formatThousands(wallex_buy.price, ",")}, amount: ${wallex_buy.quantity}`);
     console.log(`wallex sell price: ${formatThousands(wallex_sell.price, ",")}, amount: ${wallex_sell.quantity}`);
 
-        return { wallex_buy };
+        return { wallex_buy , wallex_sell };
 
   } catch (error) {
     console.log(error);
