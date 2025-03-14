@@ -9,8 +9,8 @@ async function wallex() {
     const wallex_buy = response.data.result.bid[0];
     const wallex_sell = response.data.result.ask[0];
 
-    console.log(`wallex buy price: ${formatThousands(wallex_buy.price, ",")}, amount: ${wallex_buy.quantity}`);
-    console.log(`wallex sell price: ${formatThousands(wallex_sell.price, ",")}, amount: ${wallex_sell.quantity}`);
+    // console.log(`wallex buy price: ${formatThousands(wallex_buy.price, ",")}, amount: ${wallex_buy.quantity}`);
+    // console.log(`wallex sell price: ${formatThousands(wallex_sell.price, ",")}, amount: ${wallex_sell.quantity}`);
 
         return { wallex_buy , wallex_sell };
 

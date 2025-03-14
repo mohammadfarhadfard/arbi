@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon calculate"
+    "start": "nodemon transaction/buyFromNobitex",
+    "NI": "nodemon Inventory/NInventory",
+    "WI": "nodemon Inventory/WInventory",
+    "cal" : "nodemon calculate",
+    "NB" : "nodemon transaction/buyFromNobitex",
+    "WS" : "nodemon transaction/sellToWallex"
   },
   "keywords": [],
   "author": "",
